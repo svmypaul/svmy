@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        color: #2b2b2b;
+        font-family: "Roboto Condensed";
+    }
+
+    th {
+        text-align: left;
+        color: #4679bd;
+    }
+
+    tbody>tr:nth-of-type(even) {
+        background-color: #daeaff;
+    }
+
+    button {
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+    .alert {
+  padding: 50px, 50px;
+  background-color: #f81808;
+  color: white;
+  background:rgba(240, 2, 2, 0.5);
+  border-radius: 5px;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+#loading {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.363) url('https://1.bp.blogspot.com/-KRUb5azv_gk/YPe_DzgmlTI/AAAAAAAAAaU/XZES3IZfwyUj6uwJUgeKLAx1c8ylQc57gCLcBGAsYHQ/w453-h339/oie_2182929T0mYx2x.gif') no-repeat center center;
+        z-index: 99999;
+    }
+</style>
+
+
+<body onload="myFunction()">
+    <div id="loading"></div>
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong style="color: red; text-shadow: 1px 1px #130c0c;">Alert!</strong> don't press button while looding page
+      </div><br>
+    <h3>Your data has been cleaned successfully!!</h3>
+    <p>please download your cleaned data file</p>
+    <button>Download File</button>
+    <p></p>
+    <table>
+        {{null|safe}}
+       
+    </table>
+    
+    <script>
+        function download_csv(csv, filename) {
+            var csvFile;
+            var downloadLink;
+    
+            // CSV FILE
+            csvFile = new Blob([csv], { type: "text/csv" });
+    
+            // Download link
+            downloadLink = document.createElement("a");
+    
+            // File name
+            downloadLink.download = filename;
+    
+            // We have to create a link to the file
+            downloadLink.href = window.URL.createObjectURL(csvFile);
+    
+            // Make sure that the link is not displayed
+            downloadLink.style.display = "none";
+    
+            // Add the link to your DOM
+            document.body.appendChild(downloadLink);
+    
+            // Lanzamos
+            downloadLink.click();
+        }
+    
+        function export_table_to_csv(html, filename) {
+            var csv = [];
+            var rows = document.querySelectorAll("table tr");
+    
+            for (var i = 0; i < rows.length; i++) {
+                var row = [], cols = rows[i].querySelectorAll("td, th");
+    
+                for (var j = 0; j < cols.length; j++)
+                    row.push(cols[j].innerText);
+    
+                csv.push(row.join(","));
+            }
+    
+            // Download CSV
+            download_csv(csv.join("\n"), filename);
+        }
+    
+        document.querySelector("button").addEventListener("click", function () {
+            var html = document.querySelector("table").outerHTML;
+            export_table_to_csv(html, "table.csv");
+        });
+    </script>
+    <script>
+	
+		var preloader = document.getElementById("loading");
+
+
+		function myFunction(){
+			preloader.style.display = 'none';
+		};
+	</script>
+</body>
+
+</html>

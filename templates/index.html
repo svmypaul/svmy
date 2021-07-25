@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student</title>
+</head>
+<style>
+    body {
+        margin: 0px;
+        width: auto;
+        background-image: linear-gradient(45deg, rgb(103, 103, 238), pink, rgb(248, 99, 99));
+        height: 900px;
+    }
+
+    #myFile {
+        width: 500px;
+        height: 200px;
+        font-size: 30px;
+    }
+
+    h1 {
+        color: rgb(238, 248, 248);
+        transition: width 3s;
+        transition-delay: 1s;
+        text-shadow: 2px 2px #FF0000;
+        font-size: 80px;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 37px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 20px 1px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    .button1 {
+        background-color: white;
+        color: black;
+        border: 2px solid #4CAF50;
+        border-radius: 50px;
+    }
+
+    div {
+        width: 500px;
+        height: 30px;
+        background-color: red;
+        animation-name: example;
+        animation-duration: 4s;
+        border-radius: 8px;
+    }
+
+    @keyframes example {
+        from {
+            background-color: red;
+            color: blanchedalmond;
+        }
+
+        to {
+            background-color: yellow;
+        }
+
+    }
+
+    div:hover {
+        width: 500px;
+    }
+</style>
+
+<body>
+    <center>
+        <h1>Data clean machine</h1>
+        <form action="/success" method="POST" enctype="multipart/form-data">
+            <input type="file" id="myFile" name="file">
+            <button class="button button1">Upload</button><br>
+            <div>
+                <h2>**This page only support csv file**</h2>
+            </div>
+        </form>
+
+    </center>
+
+
+</body>
+
+</html>
